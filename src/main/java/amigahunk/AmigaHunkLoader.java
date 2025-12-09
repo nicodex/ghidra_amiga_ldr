@@ -128,6 +128,9 @@ public class AmigaHunkLoader extends AbstractLibrarySupportLoader {
 	}
 
 	@Override
+	protected void load(Program program, ImporterSettings settings) throws IOException {
+		load(settings.provider(), settings.loadSpec(), settings.options(), program, settings.monitor(), settings.log());
+	}
 	protected void load(ByteProvider provider, LoadSpec loadSpec, List<Option> options, Program program, TaskMonitor monitor, MessageLog log) throws IOException {
 
 		refsLastIndex = 0;
@@ -660,6 +663,10 @@ public class AmigaHunkLoader extends AbstractLibrarySupportLoader {
 	}
 
 	@Override
+	public List<Option> getDefaultOptions(ByteProvider provider, LoadSpec loadSpec, DomainObject domainObject,
+			boolean loadIntoProgram, boolean mirrorFsLayout) {
+		return getDefaultOptions(provider, loadSpec, domainObject, loadIntoProgram);
+	}
 	public List<Option> getDefaultOptions(ByteProvider provider, LoadSpec loadSpec, DomainObject domainObject,
 			boolean isLoadIntoProgram) {
 		List<Option> list = new ArrayList<Option>();
