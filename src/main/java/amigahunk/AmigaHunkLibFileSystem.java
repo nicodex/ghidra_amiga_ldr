@@ -64,7 +64,7 @@ public class AmigaHunkLibFileSystem implements GFileSystem {
 	 * 
 	 * @param monitor A cancellable task monitor.
 	 */
-	public void mount(TaskMonitor monitor) {
+	public void mount(TaskMonitor monitor) throws IOException { //FIXME: [Ghidra 12.2] properly handle FS I/O exceptions
 		monitor.setMessage("Opening " + AmigaHunkLibFileSystem.class.getSimpleName() + "...");
 
 		BinaryReader reader = new BinaryReader(provider, false);

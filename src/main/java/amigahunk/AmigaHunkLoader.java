@@ -92,7 +92,7 @@ import structs.WBStartup;
 public class AmigaHunkLoader extends AbstractLibrarySupportLoader {
 
 	static final String AMIGA_HUNK = "Amiga Executable Hunks loader";
-	public static final int DEF_IMAGE_BASE = 0x21F000;
+	public static final int DEF_IMAGE_BASE = 0x300000;
 
 	static final String OPTION_NAME = "ImageBase";
 	public static Address imageBase = null;
@@ -675,7 +675,7 @@ public class AmigaHunkLoader extends AbstractLibrarySupportLoader {
 		try {
 			Language importerLanguage = getLanguageService().getLanguage(pair.languageID);
 			imageBase = importerLanguage.getAddressFactory().getDefaultAddressSpace().getAddress(DEF_IMAGE_BASE);
-			list.add(new Option(OPTION_NAME, imageBase, Address.class, Loader.COMMAND_LINE_ARG_PREFIX + "-baseAddr"));
+			list.add(Option.newAddress(OPTION_NAME).value(imageBase).commandLineArgument(Loader.COMMAND_LINE_ARG_PREFIX + "-baseAddr").build());
 		} catch (LanguageNotFoundException e) {
 
 		}
